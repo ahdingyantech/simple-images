@@ -1,4 +1,4 @@
-# simple-page-layout
+# simple-images
 
 to add some helper methods for create images in web page
 
