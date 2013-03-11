@@ -64,9 +64,15 @@ module SimpleImages
     end
   end
 
-  class Railtie < Rails::Railtie
-    initializer 'SimplePageLayout.helper' do |app|
-      ActionView::Base.send :include, Helper
+  module Rails
+
+    class Railtie < ::Rails::Railtie
+      initializer 'SimplePageLayout.helper' do |app|
+        ActionView::Base.send :include, Helper
+      end
+    end
+
+    class Engine < ::Rails::Engine
     end
   end
 end
