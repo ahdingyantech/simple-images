@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/mindpin/simple-images'
   s.licenses      = 'MIT'
 
-  s.files         = Dir.glob("lib/**/*") + %w(README.md)
+  s.files         = Dir.glob("lib/**/*") + Dir.glob("vendor/**/*") + %w(README.md)
   s.require_paths = ['lib']
   
 end
