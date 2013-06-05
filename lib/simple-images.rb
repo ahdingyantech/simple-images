@@ -20,7 +20,7 @@ module SimpleImages
     end
 
     def css_class
-      ['page-fit-image', 'auto-load', @option_class].compact.join ' '
+      ['page-fit-image', @option_class].compact.join ' '
     end
 
     def render_fit_image
@@ -65,7 +65,6 @@ module SimpleImages
   end
 
   module Rails
-
     class Railtie < ::Rails::Railtie
       initializer 'SimplePageLayout.helper' do |app|
         ActionView::Base.send :include, Helper
