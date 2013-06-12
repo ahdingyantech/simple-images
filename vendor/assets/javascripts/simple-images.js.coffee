@@ -47,9 +47,9 @@ jQuery ->
               .attr('src', @src)
               .attr('alt', @alt)
               .bind 'load', =>
-                @$img.fadeIn(300)
-                @resize_image()
                 @loaded = true
+                @resize_image()
+                @$img.fadeIn(250)
               .appendTo(@$elm.empty().show())
 
     resize_image: ->
@@ -102,5 +102,9 @@ jQuery ->
       this.resize_image()
 
   jQuery(window).scroll ->
+    jQuery(fit_images).each ->
+      this.load_image()
+
+  jQuery('div[data-scroller]').scroll ->
     jQuery(fit_images).each ->
       this.load_image()
