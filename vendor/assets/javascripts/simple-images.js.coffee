@@ -3,6 +3,8 @@
 jQuery ->
   class FitImage
     constructor: (@$elm)->
+      @$elm.addClass('initialized')
+
       @src = @$elm.data('src')
       @alt = @$elm.data('alt') || ''
 
@@ -87,14 +89,20 @@ jQuery ->
         .css('margin-top', top)
 
   # -----------------------
-  $page_fit_images = jQuery('div.page-fit-image[data-src]')
 
   fit_images = []
-  $page_fit_images.each ->
-    $elm = jQuery(this)
-    fit_image = new FitImage($elm)
-    fit_image.load_image()
-    fit_images.push fit_image
+
+  refresh_fit_image = ->
+    jQuery('div.page-fit-image[data-src]').not('.initialized').each ->
+      $elm = jQuery(this)
+      fit_image = new FitImage($elm)
+      fit_image.load_image()
+      fit_images.push fit_image
+
+  refresh_fit_image()
+
+  jQuery(document).on 'mindpin:new-content-appended', ->
+    refresh_fit_image()
 
   jQuery(window).resize ->
     jQuery(fit_images).each ->
