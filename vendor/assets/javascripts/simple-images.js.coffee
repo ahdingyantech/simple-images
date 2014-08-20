@@ -103,11 +103,14 @@ refresh_fit_image = ->
     fit_image.load_image()
     fit_images.push fit_image
 
-jQuery(document).on 'mindpin:new-content-appended', ->
+jQuery(document).on 'ready page:load mindpin:new-content-appended', ->
   refresh_fit_image()
 
-jQuery(document).on 'ready page:load', ->
-  refresh_fit_image()
+  jQuery('[data-scroller]')
+    .off 'scroll'
+    .on 'scroll', ->
+      for fi in fit_images
+        fi.load_image()
 
 jQuery(window).resize ->
   for fi in fit_images
@@ -115,9 +118,5 @@ jQuery(window).resize ->
     fi.resize_image()
 
 jQuery(window).scroll ->
-  for fi in fit_images
-    fi.load_image()
-
-jQuery('div[data-scroller]').scroll ->
   for fi in fit_images
     fi.load_image()
