@@ -120,3 +120,7 @@ jQuery(window).resize ->
 jQuery(window).scroll ->
   for fi in fit_images
     fi.load_image()
+
+jQuery(document).on 'mindpin:load-fit-images', ->
+  for fi in fit_images
+    fi.load_image()
